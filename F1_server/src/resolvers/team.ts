@@ -25,7 +25,7 @@ class TeamResponse {
 export class TeamResolver{
 //=================find all Teams==============================
 @Query(()=>[Team])
-users(
+team(
 
     ):Promise<Team[]>{
         return Team.find()

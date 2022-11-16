@@ -28,7 +28,7 @@ class DriverResponse {
 export class DriverResolver{
 //=================find all drivers==============================
 @Query(()=>[Driver])
-users(
+drivers(
 
     ):Promise<Driver[]>{
         return Driver.find()

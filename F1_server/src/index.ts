@@ -7,6 +7,14 @@ import path from 'path';
 import { createConnection } from 'typeorm';
 import { User } from './entities/User';
 import { UserResolver } from './resolvers/user';
+import { Post } from './entities/Post';
+import { Tour } from './entities/Tour';
+import { Team } from './entities/Team';
+import { Driver } from './entities/Driver';
+import { DriverResolver } from './resolvers/driver';
+import { PostResolver } from './resolvers/post';
+import { TourResolver } from './resolvers/tour';
+import { TeamResolver } from './resolvers/team';
 
 const main = async () => {
 
@@ -18,10 +26,11 @@ const main = async () => {
         logging: true,
         synchronize: true,
         migrations:[path.join(__dirname,'./migrations/*')],
-        entities: [User]
+        entities: [User,Driver,Post,Tour,Team]
 
     })
     // User.delete({})
+    // Post.delete({})
     const app = express();
     app.use(
         '/graphql',
@@ -33,7 +42,7 @@ const main = async () => {
 
       const apolloServer= new ApolloServer({
         schema: await buildSchema({
-            resolvers: [UserResolver],
+            resolvers: [UserResolver,DriverResolver,PostResolver,TourResolver,TeamResolver],
             validate: false,
         }),
         context: ({res,req})=>({res,req})

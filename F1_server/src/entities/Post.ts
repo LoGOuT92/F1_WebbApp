@@ -25,10 +25,6 @@ export class Post extends BaseEntity {
     @Field()
     @Column()
     type!: string;
-    
-    @Field(()=>String)
-    @Column({nullable: true})
-    contentType?: string;
 
     @Field()
     @CreateDateColumn()

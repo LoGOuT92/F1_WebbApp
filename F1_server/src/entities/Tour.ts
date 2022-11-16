@@ -5,7 +5,7 @@ import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGenerat
 @ObjectType()
 @Entity()
 
-export class Schedule extends BaseEntity {
+export class Tour extends BaseEntity {
     @Field()
     @PrimaryGeneratedColumn()
     id!: number ;
