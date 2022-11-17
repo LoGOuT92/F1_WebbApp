@@ -1,0 +1,27 @@
+.nav-full-content{
+    display: flex;
+    gap: 8ch;
+    flex-wrap: wrap;
+    padding: 5px;
+    width: 90%;
+    border-bottom: 3px solid rgb(84, 81, 81);
+    border-right: 3px solid rgb(84, 81, 81);
+    border-bottom-right-radius: 20px;
+    margin-left: 1em;
+    flex-direction: row;
+    .nav-card{
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid black;
+        transition: 0.3s;
+        &:hover{
+            border-bottom: 1px solid red;
+        }
+        svg{
+            color:red;
+        }
+        p{
+            font-weight: 600;
+        }
+    }
+}

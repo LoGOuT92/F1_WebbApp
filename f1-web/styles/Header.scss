@@ -1,0 +1,65 @@
+.header-container{
+    display:flex;
+    background-color: red;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    // position: relative;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+    z-index: 999;
+    .video-container{
+        display: flex;
+        max-width: 100%;
+        display: flex;
+        align-content: center;
+        padding: 20px;
+        color: white;
+        cursor: pointer;
+        svg{
+            height: 20px;
+            width: 20px;
+        }
+        transition: 1s;
+        &:hover{
+            background-color: black;
+            .nav-content{
+                display: block;
+            }
+        }
+    }
+    .logo{
+        min-width: 100px; 
+        img{
+            display: inline-block;
+            max-inline-size: 100%;
+            block-size: auto;
+        }
+    }
+    .global-actions{
+        display: flex;
+        justify-content: space-evenly;
+        min-width: 20ch;
+        button{
+            border-radius: 7px;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+        }
+        .sing-in-button{
+            background-color: rgb(51, 47, 47);
+            color: white;
+            &:hover{
+                background-color: rgb(69, 64, 64);
+            }
+        }
+        .subscribe-button{
+            background-color: rgb(255, 255, 255);
+            &:hover{
+                background-color: rgb(214, 199, 199);
+            }
+        }
+    }
+}

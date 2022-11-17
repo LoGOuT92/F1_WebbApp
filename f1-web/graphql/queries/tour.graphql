@@ -1,0 +1,9 @@
+query Tour{
+  tours {
+    id
+    content
+    date
+    imgURL
+    title
+  }
+}

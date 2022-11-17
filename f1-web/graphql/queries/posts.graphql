@@ -1,0 +1,15 @@
+query Posts($type: String!){
+  posts(type: $type) {
+    hasMore
+    posts {
+      content
+      createdAt
+      id
+      imgURL
+      title
+      type
+      updatedAt
+      __typename
+    }
+  }
+}

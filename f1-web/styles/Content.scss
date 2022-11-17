@@ -1,0 +1,101 @@
+.content-container{
+    display: flex;
+    justify-content: space-around;
+    padding-right: 50px;
+    padding-left: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    .content-main-card{
+        display: flex;
+        border-top: 10px solid red;
+        border-right: 10px solid red;
+        border-top-right-radius: 30px;
+        flex: 1;
+        .main-card{
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+            p{
+                font-weight: 900;
+                font-size: 32px;
+                line-height: 36px;
+            }
+            img{
+                display: inline-block;
+                max-inline-size: 100%;
+                block-size: auto;
+                transition: all .3s ease-in-out;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.05);
+                }
+                p{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .content-secondary-card{
+        display: flex;
+        
+        flex: 1;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        .secondary-card{
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            overflow: hidden;
+            cursor: pointer;
+            img{
+                display: inline-block;
+                max-inline-size: 100%;
+                block-size: auto;
+                transition: all .3s ease-in-out;
+            }
+            .secondary-card-text{
+                border-bottom: 1px solid grey;
+                border-right: 1px solid grey;
+                border-bottom-right-radius: 10px;
+                position: relative;
+                transition: all .3s ease-in-out;
+            }
+            .secondary-card-text::before{
+                content: '';
+                display: block;
+                height: 17px;
+                position: absolute;
+                opacity: 0;
+                right: -1px;
+                left: 0;
+                top: 0;
+                background:white;
+                transition: all .3s ease-in-out;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.05);
+                }
+                .secondary-card-text::before{
+                    content: '';
+                    display: block;
+                    height: 17px;
+                    position: absolute;
+                    right: -1px;
+                    left: 0;
+                    top: -10px;
+                    background:white;
+                    opacity: 1;
+                }
+                .secondary-card-text{
+                    border-color: red;
+                }
+            }
+        }
+    }
+}

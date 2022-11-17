@@ -1,0 +1,7 @@
+@import './NavMixins.scss';
+.standings-container{
+    @include container();
+    .nav-content{
+        @include nav-body();
+    }
+}

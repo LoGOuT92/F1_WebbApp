@@ -1,0 +1,10 @@
+query Drivers{
+  drivers {
+    id
+    color
+    name
+    surName
+    team
+  }
+
+}

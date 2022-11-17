@@ -1,0 +1,65 @@
+@import './NavMixins.scss';
+.drivers-container{
+    @include container();
+    .nav-content{
+        @include nav-body();
+        .drivers-list-container{
+            padding-top: 40px;
+            margin: 0;
+            width: 90%;
+            margin-left: 1em;
+            ul{
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-flow: column wrap;
+                margin: 0;
+                overflow: hidden;
+                justify-content: center;
+                align-items: center;
+                height: 255px;
+                li{
+                    width: 25%;
+                    padding: 0 15px 9px 15px;
+                    box-sizing: border-box;
+                    align-self: flex-start;
+                    .test{
+                        position: relative;
+                        display: flex;
+                        position: relative;
+                        border: 1px solid #67676d;
+                        border-top: 0;
+                        border-left: 0;
+                        border-bottom-right-radius: 10px;
+                        min-height: 40px;
+                        transition: all .3s ease-out;
+                        span{
+                            margin-left: 20px;
+                            display: inline-block;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            color: #fff;
+                            max-height: 30px;
+                        }
+                        
+                    &:hover{
+                        border-color:  currentColor;
+                    }
+                    }
+                }
+                    .test::before {
+                        content: '';
+                        position: absolute;
+                        left: 10px;
+                        top: 5px;
+                        width: 4px;
+                        height: 13px;
+                        background: currentColor;
+                    }
+            }
+        }
+    }
+}

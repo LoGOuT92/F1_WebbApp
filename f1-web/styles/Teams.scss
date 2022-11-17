@@ -1,0 +1,75 @@
+@import './NavMixins.scss';
+.teams-container{
+    @include container();
+    .nav-content{
+        @include nav-body();
+        .teams-list-container{
+            padding-top: 5px;
+            width: 90%;
+            margin-left: 1em;
+            ul{
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-flow: column wrap;
+                margin: 0;
+                overflow: hidden;
+                justify-content: flex-start;
+                height: 365px;
+                li{
+                    width: 25%;
+                    padding: 15px 10px 15px 15px;
+                    box-sizing: border-box;
+                    align-self: flex-start;
+                    .test{
+                        position: relative;
+                        display: block;
+                        border: 1px solid #67676d;
+                        border-top: 0;
+                        border-left: 0;
+                        border-bottom-right-radius: 10px;
+                        min-height: 40px;
+                        transition: all .3s ease-out;
+                        .team{
+                            display: block;
+                        }
+                        i{
+                            position: absolute;
+                            right: 14px;
+                            top: 0;
+                        }
+                        .car-img{
+                            position: relative;
+                            padding-left: 10px;
+                            padding-top: 4px;
+                            display: inline-block;
+                            img{
+                                position: relative;
+                                z-index: 9;
+                                max-width: 175px;
+                                display: inline-block;
+                                max-inline-size: 100%;
+                                block-size: auto;
+                            }
+                        }
+                        .car-img::before{
+                            content: '';
+                            position: absolute;
+                            top: 28px;
+                            left: 0;
+                            display: inline-block;
+                            background: currentColor;
+                            width: 50px;
+                            height: 19px;
+                            z-index: 1;
+                        }
+                        
+                    &:hover{
+                        border-color:  currentColor;
+                    }
+                    }
+                }
+            }
+        }
+    }
+}
