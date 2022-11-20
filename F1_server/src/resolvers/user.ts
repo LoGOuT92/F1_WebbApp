@@ -98,11 +98,19 @@ export class UserResolver{
         ):Promise<UserResponse>{
             //find user in DB
         const user = await User.findOne({where:{email:email}})
+        //validate email
+        const checkEmail = validateEmail(email)
+
+        if(!checkEmail){
+            return {
+                errors:[{field: "email",message:"email address is incorrect"}]
+            }
+        }
 
             // if user doesn't' exist in db
         if(!user){
             return{
-                errors:[{field: "username",message:"that user doesn't exist"}]
+                errors:[{field: "email",message:"that user doesn't exist"}]
             }
         }
         //password validate

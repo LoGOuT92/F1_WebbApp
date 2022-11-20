@@ -1,0 +1,82 @@
+.more-news-container{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    .more-news-label{
+        border-bottom: 10px solid black;
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    .postsCards{
+        margin-top: 20px;
+        display:flex;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 10px;
+        justify-content: space-evenly;
+        
+        .CardPost{
+            display: flex;
+            flex-direction: column;
+            max-width: 24%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 1s;
+            padding-bottom: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            &:hover{
+            background-color:     #15151e;
+            transition: all .3s ease-in-out;
+            color: white;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            }
+            img{
+                display: inline-block;
+                max-inline-size: 100%;
+                block-size: auto;
+                transition: all .3s ease-in-out;
+            }
+            .secondary-card-text{
+                position: relative;
+                display: flex;
+               justify-content:center;
+            }
+            .secondary-card-text::before{
+                content: '';
+                display: block;
+                height: 17px;
+                position: absolute;
+                opacity: 0;
+                right: -1px;
+                left: 0;
+                top: 0;
+                background:#15151e;
+                transition: all .1s ease-in-out;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.05);
+                }
+                .secondary-card-text::before{
+                    content: '';
+                    display: block;
+                    height: 17px;
+                    position: absolute;
+                    right: -1px;
+                    left: 0;
+                    top: -10px;
+                    background:#15151e;
+                    opacity: 1;
+                }
+                .secondary-card-text{
+                    border-color: red;
+                }
+            }
+            
+        }
+    }
+}

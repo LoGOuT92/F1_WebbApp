@@ -1,0 +1,13 @@
+query paginatedPosts($type: String!){
+  paginatedPosts(type: $type) {
+    posts {
+            id
+      content
+      createdAt
+      imgURL
+      title
+      type
+      updatedAt
+    }
+  }
+}
