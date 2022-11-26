@@ -16,6 +16,12 @@ export class DriverNameInput{
 
     @Field()
     color!: string;
+
+    @Field()
+    pictureURL!: string;
+
+    @Field()
+    points!: number;
 }
 @ObjectType()
 class DriverResponse {
@@ -51,6 +57,8 @@ drivers(
                     surName: driverInput.surName,
                     team: driverInput.team,
                     color: driverInput.color,
+                    pictureURL: driverInput.pictureURL,
+                    points: driverInput.points,
                 })
                 .returning("*")
                 .execute()
@@ -72,6 +80,19 @@ drivers(
         }
         await Driver.delete({id})
         return true;
+    }
+//=================ranking drivers==============================
+    @Query(()=>[Driver])
+    async rankingDrivers(
+
+    ):Promise<Driver[]>{
+        const drivers = await getConnection().query(`
+        select d.*
+        from driver d
+        order by d."points" DESC
+        `);
+
+        return drivers
     }
 
 }

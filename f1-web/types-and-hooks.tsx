@@ -22,6 +22,8 @@ export type Driver = {
   createdAt: Scalars['DateTime'];
   id: Scalars['Float'];
   name: Scalars['String'];
+  pictureURL: Scalars['String'];
+  points: Scalars['Float'];
   surName: Scalars['String'];
   team: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -30,6 +32,8 @@ export type Driver = {
 export type DriverNameInput = {
   color: Scalars['String'];
   name: Scalars['String'];
+  pictureURL: Scalars['String'];
+  points: Scalars['Float'];
   surName: Scalars['String'];
   team: Scalars['String'];
 };
@@ -130,6 +134,9 @@ export type Query = {
   drivers: Array<Driver>;
   paginatedPosts?: Maybe<PaginatedPosts>;
   posts?: Maybe<PaginatedPosts>;
+  rankingDrivers: Array<Driver>;
+  rankingTeams: Array<Team>;
+  singlePost?: Maybe<Post>;
   team: Array<Team>;
   tours: Array<Tour>;
   users: Array<User>;
@@ -137,12 +144,17 @@ export type Query = {
 
 
 export type QueryPaginatedPostsArgs = {
-  type: Scalars['String'];
+  cursor?: InputMaybe<Scalars['Int']>;
 };
 
 
 export type QueryPostsArgs = {
   type: Scalars['String'];
+};
+
+
+export type QuerySinglePostArgs = {
+  id: Scalars['Int'];
 };
 
 export type Team = {
@@ -151,6 +163,8 @@ export type Team = {
   createdAt: Scalars['DateTime'];
   id: Scalars['Float'];
   imgURL: Scalars['String'];
+  logoURL: Scalars['String'];
+  points: Scalars['Float'];
   team: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
@@ -158,6 +172,8 @@ export type Team = {
 export type TeamNameInput = {
   color: Scalars['String'];
   imgURL: Scalars['String'];
+  logoURL: Scalars['String'];
+  points: Scalars['Float'];
   team: Scalars['String'];
 };
 
@@ -247,12 +263,12 @@ export type DriversQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type DriversQuery = { __typename?: 'Query', drivers: Array<{ __typename?: 'Driver', id: number, color: string, name: string, surName: string, team: string }> };
 
-export type PaginatedPostsQueryVariables = Exact<{
-  type: Scalars['String'];
+export type PaginatedPostQueryVariables = Exact<{
+  cursor?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type PaginatedPostsQuery = { __typename?: 'Query', paginatedPosts?: { __typename?: 'PaginatedPosts', posts: Array<{ __typename?: 'Post', id: number, content: string, createdAt: any, imgURL: string, title: string, type: string, updatedAt: any }> } | null };
+export type PaginatedPostQuery = { __typename?: 'Query', paginatedPosts?: { __typename?: 'PaginatedPosts', hasMore: boolean, posts: Array<{ __typename?: 'Post', id: number, content: string, createdAt: any, imgURL: string, title: string, type: string }> } | null };
 
 export type PostsQueryVariables = Exact<{
   type: Scalars['String'];
@@ -260,6 +276,23 @@ export type PostsQueryVariables = Exact<{
 
 
 export type PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PaginatedPosts', hasMore: boolean, posts: Array<{ __typename: 'Post', content: string, createdAt: any, id: number, imgURL: string, title: string, type: string, updatedAt: any }> } | null };
+
+export type RankingDriversQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RankingDriversQuery = { __typename?: 'Query', rankingDrivers: Array<{ __typename?: 'Driver', name: string, surName: string, color: string, id: number, points: number, team: string }> };
+
+export type RankingTeamsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RankingTeamsQuery = { __typename?: 'Query', rankingTeams: Array<{ __typename?: 'Team', color: string, id: number, points: number, team: string, imgURL: string, logoURL: string }> };
+
+export type SinglePostQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type SinglePostQuery = { __typename?: 'Query', singlePost?: { __typename?: 'Post', id: number, content: string, createdAt: any, imgURL: string, title: string, type: string } | null };
 
 export type TeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -479,9 +512,10 @@ export function useDriversLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Dr
 export type DriversQueryHookResult = ReturnType<typeof useDriversQuery>;
 export type DriversLazyQueryHookResult = ReturnType<typeof useDriversLazyQuery>;
 export type DriversQueryResult = Apollo.QueryResult<DriversQuery, DriversQueryVariables>;
-export const PaginatedPostsDocument = gql`
-    query paginatedPosts($type: String!) {
-  paginatedPosts(type: $type) {
+export const PaginatedPostDocument = gql`
+    query paginatedPost($cursor: Int) {
+  paginatedPosts(cursor: $cursor) {
+    hasMore
     posts {
       id
       content
@@ -489,39 +523,38 @@ export const PaginatedPostsDocument = gql`
       imgURL
       title
       type
-      updatedAt
     }
   }
 }
     `;
 
 /**
- * __usePaginatedPostsQuery__
+ * __usePaginatedPostQuery__
  *
- * To run a query within a React component, call `usePaginatedPostsQuery` and pass it any options that fit your needs.
- * When your component renders, `usePaginatedPostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `usePaginatedPostQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePaginatedPostQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = usePaginatedPostsQuery({
+ * const { data, loading, error } = usePaginatedPostQuery({
  *   variables: {
- *      type: // value for 'type'
+ *      cursor: // value for 'cursor'
  *   },
  * });
  */
-export function usePaginatedPostsQuery(baseOptions: Apollo.QueryHookOptions<PaginatedPostsQuery, PaginatedPostsQueryVariables>) {
+export function usePaginatedPostQuery(baseOptions?: Apollo.QueryHookOptions<PaginatedPostQuery, PaginatedPostQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PaginatedPostsQuery, PaginatedPostsQueryVariables>(PaginatedPostsDocument, options);
+        return Apollo.useQuery<PaginatedPostQuery, PaginatedPostQueryVariables>(PaginatedPostDocument, options);
       }
-export function usePaginatedPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PaginatedPostsQuery, PaginatedPostsQueryVariables>) {
+export function usePaginatedPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PaginatedPostQuery, PaginatedPostQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PaginatedPostsQuery, PaginatedPostsQueryVariables>(PaginatedPostsDocument, options);
+          return Apollo.useLazyQuery<PaginatedPostQuery, PaginatedPostQueryVariables>(PaginatedPostDocument, options);
         }
-export type PaginatedPostsQueryHookResult = ReturnType<typeof usePaginatedPostsQuery>;
-export type PaginatedPostsLazyQueryHookResult = ReturnType<typeof usePaginatedPostsLazyQuery>;
-export type PaginatedPostsQueryResult = Apollo.QueryResult<PaginatedPostsQuery, PaginatedPostsQueryVariables>;
+export type PaginatedPostQueryHookResult = ReturnType<typeof usePaginatedPostQuery>;
+export type PaginatedPostLazyQueryHookResult = ReturnType<typeof usePaginatedPostLazyQuery>;
+export type PaginatedPostQueryResult = Apollo.QueryResult<PaginatedPostQuery, PaginatedPostQueryVariables>;
 export const PostsDocument = gql`
     query Posts($type: String!) {
   posts(type: $type) {
@@ -567,6 +600,124 @@ export function usePostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Post
 export type PostsQueryHookResult = ReturnType<typeof usePostsQuery>;
 export type PostsLazyQueryHookResult = ReturnType<typeof usePostsLazyQuery>;
 export type PostsQueryResult = Apollo.QueryResult<PostsQuery, PostsQueryVariables>;
+export const RankingDriversDocument = gql`
+    query rankingDrivers {
+  rankingDrivers {
+    name
+    surName
+    color
+    id
+    points
+    team
+  }
+}
+    `;
+
+/**
+ * __useRankingDriversQuery__
+ *
+ * To run a query within a React component, call `useRankingDriversQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRankingDriversQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRankingDriversQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRankingDriversQuery(baseOptions?: Apollo.QueryHookOptions<RankingDriversQuery, RankingDriversQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RankingDriversQuery, RankingDriversQueryVariables>(RankingDriversDocument, options);
+      }
+export function useRankingDriversLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RankingDriversQuery, RankingDriversQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RankingDriversQuery, RankingDriversQueryVariables>(RankingDriversDocument, options);
+        }
+export type RankingDriversQueryHookResult = ReturnType<typeof useRankingDriversQuery>;
+export type RankingDriversLazyQueryHookResult = ReturnType<typeof useRankingDriversLazyQuery>;
+export type RankingDriversQueryResult = Apollo.QueryResult<RankingDriversQuery, RankingDriversQueryVariables>;
+export const RankingTeamsDocument = gql`
+    query rankingTeams {
+  rankingTeams {
+    color
+    id
+    points
+    team
+    imgURL
+    logoURL
+  }
+}
+    `;
+
+/**
+ * __useRankingTeamsQuery__
+ *
+ * To run a query within a React component, call `useRankingTeamsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRankingTeamsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRankingTeamsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRankingTeamsQuery(baseOptions?: Apollo.QueryHookOptions<RankingTeamsQuery, RankingTeamsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RankingTeamsQuery, RankingTeamsQueryVariables>(RankingTeamsDocument, options);
+      }
+export function useRankingTeamsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RankingTeamsQuery, RankingTeamsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RankingTeamsQuery, RankingTeamsQueryVariables>(RankingTeamsDocument, options);
+        }
+export type RankingTeamsQueryHookResult = ReturnType<typeof useRankingTeamsQuery>;
+export type RankingTeamsLazyQueryHookResult = ReturnType<typeof useRankingTeamsLazyQuery>;
+export type RankingTeamsQueryResult = Apollo.QueryResult<RankingTeamsQuery, RankingTeamsQueryVariables>;
+export const SinglePostDocument = gql`
+    query SinglePost($id: Int!) {
+  singlePost(id: $id) {
+    id
+    content
+    createdAt
+    imgURL
+    title
+    type
+  }
+}
+    `;
+
+/**
+ * __useSinglePostQuery__
+ *
+ * To run a query within a React component, call `useSinglePostQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSinglePostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSinglePostQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useSinglePostQuery(baseOptions: Apollo.QueryHookOptions<SinglePostQuery, SinglePostQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SinglePostQuery, SinglePostQueryVariables>(SinglePostDocument, options);
+      }
+export function useSinglePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SinglePostQuery, SinglePostQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SinglePostQuery, SinglePostQueryVariables>(SinglePostDocument, options);
+        }
+export type SinglePostQueryHookResult = ReturnType<typeof useSinglePostQuery>;
+export type SinglePostLazyQueryHookResult = ReturnType<typeof useSinglePostLazyQuery>;
+export type SinglePostQueryResult = Apollo.QueryResult<SinglePostQuery, SinglePostQueryVariables>;
 export const TeamsDocument = gql`
     query Teams {
   team {

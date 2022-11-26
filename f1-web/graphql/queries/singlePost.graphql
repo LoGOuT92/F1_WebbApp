@@ -1,0 +1,10 @@
+query SinglePost($id: Int!){
+  singlePost(id: $id) {
+    id
+    content
+    createdAt
+    imgURL
+    title
+    type
+  }
+}

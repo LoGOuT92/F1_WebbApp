@@ -10,6 +10,9 @@ import "../styles/Schedule.scss";
 import "../styles/Standings.scss";
 import "../styles/Teams.scss";
 import "../components/Content/MoreNews/MoreNews.scss";
+import "../components/Rankings/Ranking/ranking.scss";
+import "../components/Topic/Topic.scss";
+import "../pages/post/post.scss";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",

@@ -23,6 +23,15 @@ export class Team extends BaseEntity {
     imgURL!: string;
 
     @Field()
+    @Column()
+    logoURL!: string;
+
+    @Field()
+    @Column()
+    points!: number;
+
+
+    @Field()
     @CreateDateColumn()
     createdAt!: Date;
 

@@ -1,0 +1,10 @@
+query rankingTeams{
+  rankingTeams {
+    color
+    id
+    points
+    team
+    imgURL
+    logoURL
+  }
+}

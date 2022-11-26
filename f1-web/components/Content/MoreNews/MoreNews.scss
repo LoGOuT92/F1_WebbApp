@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .more-news-container{
     display: flex;
     align-items: flex-start;
@@ -5,9 +7,9 @@
     padding: 10px;
     width: 100%;
     .more-news-label{
-        border-bottom: 10px solid black;
+        border-bottom: 10px solid $secondBlack;
         width: 100%;
-        padding-bottom: 20px;
+        padding: 10px;
     }
     .postsCards{
         margin-top: 20px;
@@ -28,7 +30,7 @@
             margin-bottom: 20px;
             font-weight: 600;
             &:hover{
-            background-color:     #15151e;
+            background-color:  $secondBlack;
             transition: all .3s ease-in-out;
             color: white;
             border-bottom-right-radius: 15px;
@@ -54,7 +56,7 @@
                 right: -1px;
                 left: 0;
                 top: 0;
-                background:#15151e;
+                background:$secondBlack;
                 transition: all .1s ease-in-out;
             }
             &:hover{
@@ -69,11 +71,11 @@
                     right: -1px;
                     left: 0;
                     top: -10px;
-                    background:#15151e;
+                    background:$secondBlack;
                     opacity: 1;
                 }
                 .secondary-card-text{
-                    border-color: red;
+                    border-color: $red;
                 }
             }
             

@@ -25,6 +25,14 @@ export class Driver extends BaseEntity {
     @Field()
     @Column()
     color!: string;
+    
+    @Field()
+    @Column()
+    pictureURL!: string;
+
+    @Field()
+    @Column()
+    points!: number;
 
     @Field()
     @CreateDateColumn()

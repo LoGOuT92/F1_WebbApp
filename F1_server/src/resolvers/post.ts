@@ -1,4 +1,4 @@
-import { InputType, Query, Resolver,Field, Mutation, ObjectType, Arg } from "type-graphql";
+import { InputType, Query, Resolver,Field, Mutation, ObjectType, Arg, Int } from "type-graphql";
 import { getConnection } from "typeorm";
 import { Post } from "../entities/Post";
 
@@ -29,7 +29,7 @@ class PaginatedPosts{
 
 @Resolver(Post)
 export class PostResolver{
-
+//=================get first 3 posts==============================
 @Query(() => PaginatedPosts,{nullable: true})
 async posts(
         @Arg('type')type:string,
@@ -46,20 +46,32 @@ async posts(
             return {posts: posts.slice(0,5),hasMore:false}
         }
     }
+    //=================paginated posts==============================
 @Query(() => PaginatedPosts,{nullable: true})
 async paginatedPosts(
-        @Arg('type')type:string,
+        @Arg('cursor',()=>Int,{nullable:true})cursor:number|null,
     ):Promise<PaginatedPosts>{
+        const realLimit = Math.min(32,7)+1;
+        const realLimitPlusOne = realLimit+1
+
+        const replacment:any=[realLimitPlusOne,'posts']
+        if(cursor){
+            replacment.push(cursor)
+
+        }
+
         const posts = await getConnection().query(`
         select p.*
         from post p
-        where p."type" = $1
+        ${cursor ? `where p."id" < $3 and p."type" = $2` : `where p."type" = $2`}
         order by p."id" DESC
-        `,[type]);
-    return {posts: posts.slice(5,13),hasMore:false}
+        limit $1
+        `,replacment);
+
+        return {posts: posts.slice(0,realLimit),hasMore:posts.length === realLimitPlusOne}
         
     }
-
+//=================create post==============================
     @Mutation(() => Post)
 async createPost(
     @Arg('postInput')postInput:PostInput
@@ -85,5 +97,11 @@ async createPost(
             }
             return post;
     }
-
+//=================get single post==============================
+@Query(()=>Post,{nullable:true})
+singlePost(
+    @Arg('id',()=>Int) id:number
+):Promise<Post|undefined|null>{
+    return Post.findOne({where: {id}})
+}
 }

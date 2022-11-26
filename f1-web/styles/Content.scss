@@ -1,3 +1,4 @@
+@import './variables';
 .content-container{
     display: flex;
     justify-content: space-around;
@@ -8,8 +9,8 @@
     margin-top: 10px;
     .content-main-card{
         display: flex;
-        border-top: 10px solid red;
-        border-right: 10px solid red;
+        border-top: 10px solid $red;
+        border-right: 10px solid $red;
         border-top-right-radius: 30px;
         flex: 1;
         .main-card{
@@ -59,8 +60,8 @@
                 transition: all .3s ease-in-out;
             }
             .secondary-card-text{
-                border-bottom: 1px solid grey;
-                border-right: 1px solid grey;
+                border-bottom: 1px solid $darkGrey;
+                border-right: 1px solid $darkGrey;
                 border-bottom-right-radius: 10px;
                 position: relative;
                 transition: all .3s ease-in-out;
@@ -74,7 +75,7 @@
                 right: -1px;
                 left: 0;
                 top: 0;
-                background:white;
+                background:$white;
                 transition: all .3s ease-in-out;
             }
             &:hover{
@@ -93,7 +94,7 @@
                     opacity: 1;
                 }
                 .secondary-card-text{
-                    border-color: red;
+                    border-color: $red;
                 }
             }
         }

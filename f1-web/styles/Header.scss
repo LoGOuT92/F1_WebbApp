@@ -1,11 +1,12 @@
+@import './variables';
+
 .header-container{
     display:flex;
-    background-color: red;
+    background-color: $red;
     justify-content: space-evenly;
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
-    // position: relative;
     position: -webkit-sticky;
     position: sticky;
     top: -1px;
@@ -16,7 +17,7 @@
         display: flex;
         align-content: center;
         padding: 20px;
-        color: white;
+        color: $white;
         cursor: pointer;
         svg{
             height: 20px;
@@ -24,7 +25,7 @@
         }
         transition: 1s;
         &:hover{
-            background-color: black;
+            background-color: $black;
             .nav-content{
                 display: block;
             }
@@ -50,13 +51,13 @@
         }
         .sing-in-button{
             background-color: rgb(51, 47, 47);
-            color: white;
+            color: $white;
             &:hover{
                 background-color: rgb(69, 64, 64);
             }
         }
         .subscribe-button{
-            color: black;
+            color: $black;
             background-color: rgb(255, 255, 255);
             &:hover{
                 background-color: rgb(214, 199, 199);

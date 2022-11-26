@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { usePostsQuery } from "../../../types-and-hooks";
 // import "./Latest.scss";
 import NavContent from "../NavPaterns/NavContent";
-import Image from "next/image";
+import NextLink from "next/link";
 
 interface ILatestProps {}
 
@@ -51,7 +51,12 @@ const Latest: React.FunctionComponent<ILatestProps> = (props) => {
           <div className="nav-news">
             <p>News</p>
             {post!.map((item: Post) => (
-              <div className="nav-nevs-container" key={item.id}>
+              <NextLink
+                href="/post/[id]"
+                as={`/post/${item.id}`}
+                className="nav-nevs-container"
+                key={item.id}
+              >
                 <div className="nav-nevs-card">
                   <img alt="newsLogo" src={item.imgURL} />
                 </div>
@@ -61,7 +66,7 @@ const Latest: React.FunctionComponent<ILatestProps> = (props) => {
                     {item.content}
                   </div>
                 </div>
-              </div>
+              </NextLink>
             ))}
           </div>
           <div className="nav-topic">

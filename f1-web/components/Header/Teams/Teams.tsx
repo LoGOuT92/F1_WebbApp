@@ -18,7 +18,6 @@ interface Idata {
 const Teams: React.FunctionComponent<ITeamsProps> = (props) => {
   const [teams, setData] = useState<Idata["data"]>([]);
   const { data, loading } = useTeamsQuery();
-  console.log(data?.team);
 
   useEffect(() => {
     if (!loading && data) {

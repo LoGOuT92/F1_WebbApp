@@ -1,0 +1,76 @@
+@import '../../styles/variables';
+.post-container{
+    padding: 25px;
+    .post-content-container{
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        width: 100%;
+        .post-img{
+            position: relative;
+            display: inline-block;
+            max-inline-size: 100%;
+            block-size: auto;
+            border-top: 10px solid red;
+            border-right: 10px solid red;
+            border-top-right-radius: 25px;
+            flex: 3;
+        }
+        .test2{
+            flex: 2;
+            .nav-news{
+                padding-right: 35%;
+                height: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                align-items: center;
+                margin-left: 1em;
+                align-items: flex-start;
+                .h1-latest{
+                    margin: 0;
+                    padding-top: 20px;
+                    border-top-right-radius: 25px;
+                    border-top: 2px solid $darkGrey;
+                    border-right: 2px solid $darkGrey;
+                    width: 100%;
+                }
+                .nav-nevs-container{
+                    letter-spacing:  .5px;
+                    font-size: 15px;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+                    column-gap: 10px;
+                    border-bottom: 2px solid $darkGrey;
+                    padding: 5px;
+                    &:hover{
+                        border-bottom: 2px solid $red;
+                    }
+                    .nav-nevs-card{
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                        img{
+                            display: inline-block;
+                            max-inline-size: 100%;
+                            block-size: auto;
+                        }
+                        .nav-nevs-content{
+                            display: flex;
+                            align-items: flex-start;
+                            justify-content: center;
+                            flex-direction: column;
+                            .paragraph{
+                                margin: 0;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}

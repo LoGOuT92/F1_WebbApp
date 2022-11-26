@@ -29,7 +29,6 @@ const main = async () => {
         entities: [User,Driver,Post,Tour,Team]
 
     })
-    // User.delete({})
     // Post.delete({})
     const app = express();
     app.use(

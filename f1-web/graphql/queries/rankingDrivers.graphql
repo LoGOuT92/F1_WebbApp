@@ -1,0 +1,10 @@
+query rankingDrivers{
+  rankingDrivers {
+    name
+    surName
+    color
+    id
+    points
+    team
+  }
+}

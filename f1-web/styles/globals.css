@@ -14,6 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+input{
+  background-color: black !important;
+}
 
 @media (prefers-color-scheme: dark) {
   html {
