@@ -6,10 +6,12 @@ interface IInputFieldProps {
   label: string;
   placeholder?: string;
   type?: string;
+  textArea?: boolean;
 }
 
 const InputField: React.FunctionComponent<IInputFieldProps> = ({
   label,
+  textArea,
   ...props
 }) => {
   const [field, { error }] = useField(props);
@@ -25,20 +27,36 @@ const InputField: React.FunctionComponent<IInputFieldProps> = ({
       <label htmlFor={field.name} style={{ fontWeight: "600", fontSize: 20 }}>
         {label}
       </label>
-      <input
-        style={{
-          height: "30px",
-          width: "100%",
-          padding: "15px 10px",
-          fontSize: "15px",
-          borderRadius: "5px",
-          marginTop: "10px",
-        }}
-        {...field}
-        {...props}
-        id={field.name}
-        placeholder={props.placeholder}
-      ></input>
+      {textArea ? (
+        <textarea
+          style={{
+            width: "100%",
+            padding: "15px 10px",
+            fontSize: "15px",
+            borderRadius: "5px",
+            marginTop: "10px",
+          }}
+          {...field}
+          {...props}
+          id={field.name}
+          placeholder={props.placeholder}
+        ></textarea>
+      ) : (
+        <input
+          style={{
+            height: "30px",
+            width: "100%",
+            padding: "15px 10px",
+            fontSize: "15px",
+            borderRadius: "5px",
+            marginTop: "10px",
+          }}
+          {...field}
+          {...props}
+          id={field.name}
+          placeholder={props.placeholder}
+        ></input>
+      )}
       {error ? (
         <label
           style={{

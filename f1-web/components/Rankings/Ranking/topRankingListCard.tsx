@@ -1,8 +1,28 @@
 import * as React from "react";
+import NextLink from "next/link";
 
-interface IListCardProps {}
+interface IListCardProps {
+  key: number;
+  name?: string;
+  SurName?: string;
+  points: number;
+  team: string;
+  color: string;
+  mode: Boolean;
+  imgURL?: string;
+  position: number;
+  drivTab?: {
+    __typename?: "Driver" | undefined;
+    name: string;
+    surName: string;
+    color: string;
+    id: number;
+    points: number;
+    team: string;
+  }[];
+}
 
-const ListCard: React.FunctionComponent<any> = ({
+const ListCard: React.FunctionComponent<IListCardProps> = ({
   name,
   SurName,
   points,
@@ -11,11 +31,15 @@ const ListCard: React.FunctionComponent<any> = ({
   mode,
   imgURL,
   position,
-  test,
+  drivTab,
 }) => {
   return (
     <li className="ranking-list-item">
-      <div className="list-item-div">
+      <NextLink
+        className="list-item-div"
+        href={`${mode ? "" : '"/team/[team]"'}`}
+        as={`${mode ? "" : `/team/${team.trim()}`}`}
+      >
         <span
           style={{
             top: "1px",
@@ -62,8 +86,8 @@ const ListCard: React.FunctionComponent<any> = ({
         >
           {!mode ? (
             <span>
-              <span>{test?.[0]?.surName}</span> /{" "}
-              <span>{test?.[1]?.surName}</span>
+              <span>{drivTab?.[0]?.surName}</span> /{" "}
+              <span>{drivTab?.[1]?.surName}</span>
             </span>
           ) : (
             team
@@ -105,7 +129,7 @@ const ListCard: React.FunctionComponent<any> = ({
             </svg>
           </span>
         </span>
-      </div>
+      </NextLink>
     </li>
   );
 };

@@ -40,7 +40,6 @@ const MoreNews: React.FunctionComponent = () => {
       let x = data!.paginatedPosts!.posts;
       setPosts(posts!.concat(x));
     }
-    console.log(posts);
   }, [data]);
 
   if (loading) {

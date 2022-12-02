@@ -94,6 +94,18 @@ drivers(
 
         return drivers
     }
+    //=======================single driver =================
+        @Query(()=>[Driver])
+        async singleDriver(
+            @Arg('team',()=>String) team:string
+        ):Promise<Driver[]>{
+            if(team==="Red Bull"){
+                team = 'Red Bull Racing'
+            }
+
+            const drivers = await Driver.find({where:{team:team}})
+            return drivers
+        }
 
 }
 

@@ -9,10 +9,11 @@ import "../styles/NavContent.scss";
 import "../styles/Schedule.scss";
 import "../styles/Standings.scss";
 import "../styles/Teams.scss";
-import "../components/Content/MoreNews/MoreNews.scss";
-import "../components/Rankings/Ranking/ranking.scss";
-import "../components/Topic/Topic.scss";
-import "../pages/post/post.scss";
+import "../styles/MoreNews.scss";
+import "../styles/ranking.scss";
+import "../styles/Topic.scss";
+import "../styles/post.scss";
+import "../styles/team.scss";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",

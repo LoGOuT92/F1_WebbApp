@@ -104,4 +104,53 @@ singlePost(
 ):Promise<Post|undefined|null>{
     return Post.findOne({where: {id}})
 }
+//=================delete single post==============================
+@Mutation(()=>Boolean)
+async deletePost(
+@Arg('id')id:number
+):Promise<boolean>{
+    const post = await Post.findOne({where:{id}})
+    if(!post){
+        return false
+    }
+    await Post.delete({id})
+    return true;
+}
+//=================Update Post============================
+@Mutation(() => Post)
+async updatePost(
+    @Arg('title')title:string,
+    @Arg('content')content:string,
+    @Arg('imgURL')imgURL:string,
+    @Arg('type')type:string,
+    @Arg('id')id:number
+    ):Promise<Post>{
+        let post;
+            try{
+                const result = await getConnection()
+                .createQueryBuilder()
+                .update(Post)
+                .set({
+                    title,
+                    content,
+                    imgURL,
+                    type
+                })
+                .where("id = :id", { id })
+                .returning("*")
+                .execute()
+                post = result.raw[0];
+            }catch(err){
+                console.log(err);
+                
+            }
+            return post;
+    }
+    @Query(()=>[Post])
+    allPosts(
+
+    ):Promise<Post[]>{
+        return Post.find()
+    }
+
 }

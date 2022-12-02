@@ -76,7 +76,15 @@ team(
 
         return teams
     }
+    //=======================single team =================
+    @Query(()=>Team,{nullable:true})
+singleTeam(
+    @Arg('team',()=>String) team:string
+):Promise<Team|undefined|null>{
+    return Team.findOne({where: {team}})
 }
+}
+
 
 
 

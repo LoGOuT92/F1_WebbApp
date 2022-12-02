@@ -3,6 +3,7 @@ import NavContent from "../NavPaterns/NavContent";
 // import "./Teams.scss";
 import { useState, useEffect } from "react";
 import { Team, useTeamsQuery } from "../../../types-and-hooks";
+import NextLink from "next/link";
 
 interface ITeamsProps {}
 interface team {
@@ -44,7 +45,12 @@ const Teams: React.FunctionComponent<ITeamsProps> = (props) => {
           <ul>
             {teams.map((item: team) => (
               <li key={item.id}>
-                <div className="test" style={{ color: item.color }}>
+                <NextLink
+                  className="team-card"
+                  style={{ color: item.color }}
+                  href="/team/[team]"
+                  as={`/team/${item.team.trim()}`}
+                >
                   <span
                     className="team"
                     style={{ color: `white`, fontWeight: 600 }}
@@ -64,7 +70,7 @@ const Teams: React.FunctionComponent<ITeamsProps> = (props) => {
                       />
                     </svg>
                   </i>
-                </div>
+                </NextLink>
               </li>
             ))}
           </ul>

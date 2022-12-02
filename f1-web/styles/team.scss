@@ -1,0 +1,56 @@
+.team-container{
+    width: 100%;
+    padding: 50px;
+    .row{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        flex-wrap: wrap;
+        .information-team{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding-right: 50px;
+            flex: 1;
+            flex-wrap: wrap;
+            img{
+                display: inline-block;
+                max-inline-size: 100%;
+                block-size: auto;
+            }
+            .team-information{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                        flex-wrap: wrap;
+            }
+        }
+        .drivers-picture-container{
+            display: flex;
+            flex: 1;
+            gap:5px;
+            .picture{
+                flex:1;
+                overflow: hidden;
+                .KKK{
+                    overflow: hidden;
+                }
+                &:hover{
+                    background-color: black;
+                    color: white;
+                    cursor: pointer;                            
+                    img{
+                        transform: scale(1.1);
+                    }
+                }
+                img{
+                    display: inline-block;
+                    max-inline-size: 100%;
+                    block-size: auto;
+                    transition: all .3s ease-in-out;
+                }
+            }
+        }
+    }
+}

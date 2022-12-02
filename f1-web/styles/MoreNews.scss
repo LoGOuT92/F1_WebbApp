@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@import './variables';
 
 .more-news-container{
     display: flex;
@@ -32,7 +32,7 @@
             &:hover{
             background-color:  $secondBlack;
             transition: all .3s ease-in-out;
-            color: white;
+            color: $white;
             border-bottom-right-radius: 15px;
             border-bottom-left-radius: 15px;
             }

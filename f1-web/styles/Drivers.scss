@@ -24,7 +24,7 @@
                     padding: 0 15px 9px 15px;
                     box-sizing: border-box;
                     align-self: flex-start;
-                    .test{
+                    .driver-card{
                         position: relative;
                         display: flex;
                         position: relative;
@@ -51,7 +51,7 @@
                     }
                     }
                 }
-                    .test::before {
+                    .driver-card::before {
                         content: '';
                         position: absolute;
                         left: 10px;

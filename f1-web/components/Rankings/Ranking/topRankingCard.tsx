@@ -1,8 +1,18 @@
 import * as React from "react";
 
-interface ITopRankingProps {}
+interface ITopRankingProps {
+  imgURL: string;
+  position: string;
+  name?: string;
+  SurName?: string;
+  height: string;
+  width: string;
+  mode?: Boolean;
+  logoURL?: string;
+  color?: string;
+}
 
-const TopRanking: React.FunctionComponent<any> = ({
+const TopRanking: React.FunctionComponent<ITopRankingProps> = ({
   imgURL,
   position,
   name,

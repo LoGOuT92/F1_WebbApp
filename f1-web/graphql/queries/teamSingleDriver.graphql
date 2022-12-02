@@ -1,0 +1,8 @@
+query singleDriver($team: String!){
+  singleDriver(team: $team) {
+    id
+    name
+    surName
+    pictureURL
+  }
+}

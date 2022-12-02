@@ -43,7 +43,7 @@ const Drivers: React.FunctionComponent<IDriversProps> = (props) => {
           <ul>
             {driver.map((item) => (
               <li key={item.id}>
-                <div className="test" style={{ color: item.color }}>
+                <div className="driver-card" style={{ color: item.color }}>
                   <span>{item.name}</span>
                   <span style={{ textTransform: `uppercase`, fontWeight: 600 }}>
                     {item.surName}

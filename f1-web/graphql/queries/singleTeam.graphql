@@ -1,0 +1,10 @@
+query singleTeam($team: String!){
+  singleTeam(team: $team) {
+    id
+    color
+    imgURL
+    logoURL
+    points
+    team
+  }
+}

@@ -1,0 +1,9 @@
+mutation Update($updatePostId: Float!, $type: String!, $imgUrl: String!, $content: String!, $title: String!){
+  updatePost(id: $updatePostId, type: $type, imgURL: $imgUrl, content: $content, title: $title) {
+    id
+    content
+    imgURL
+    title
+    type
+  }
+}

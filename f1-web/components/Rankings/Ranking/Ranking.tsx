@@ -152,7 +152,7 @@ const Ranking: React.FunctionComponent<IRankingProps> = ({
                     points={team.points}
                     imgURL={team.imgURL}
                     position={index}
-                    test={drivers!.filter(
+                    drivTab={drivers!.filter(
                       (x) => x.team.slice(0, 4) === team.team.slice(0, 4)
                     )}
                     mode={mode}
