@@ -68,3 +68,25 @@
         }
     }
 }
+@media (max-width: 800px){
+    .topic-container{
+        padding: 10px;
+        .border-topic{
+            padding: 10px;
+            .topic-legend{
+                top: -2ch;
+                font-size: 2ch;
+                font-weight: 600;
+            }
+            .topic-content{
+                padding:0;
+                margin: 0;
+                gap: 10px;
+                flex-direction: column;
+                .topic-topic-content{
+                    min-width: 100%;
+                }
+            }
+        }
+    }
+}

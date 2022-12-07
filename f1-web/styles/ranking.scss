@@ -130,3 +130,49 @@
         }
     }
 }
+@media (max-width: 800px){
+    .ranking-container{
+        .ranking-content-container{
+        }
+        .ranking-background{
+        }
+        .ranking-top3{
+            .top3{
+                display: none;
+                h1{
+                    display: none;
+                    position: absolute;
+                }
+            }
+            .top3:nth-child(2n){
+                display: block;
+                width: 60% !important; 
+            }
+        }
+    }
+    .ranking-list{
+        padding: 0;
+        margin: 0;
+        .ranking-list-item{
+            padding: 5px !important;
+            a{
+                .ranking-label-name{
+                    margin: 0 !important;
+                    font-weight: 0 !important;
+                }
+                .carImageLabel{
+                    display: none;
+                }
+                span:nth-child(3){
+                    .name-span{
+                        display: none;
+                    }
+                }
+                span:nth-child(4){
+                    display: none;
+                }
+            }
+        }
+    }
+
+}

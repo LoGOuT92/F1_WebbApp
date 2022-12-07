@@ -63,7 +63,7 @@ const MoreNews: React.FunctionComponent = () => {
               href="/post/[id]"
               as={`/post/${post.id}`}
             >
-              <div>
+              <div className="image-more-news">
                 <img src={post.imgURL}></img>
               </div>
               <div className="secondary-card-text">

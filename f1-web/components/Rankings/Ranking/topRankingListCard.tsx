@@ -60,11 +60,15 @@ const ListCard: React.FunctionComponent<IListCardProps> = ({
         ></span>
         <span style={{ fontSize: "15px", lineHeight: "17px" }}>
           {mode ? (
-            <span style={{ textTransform: "capitalize", fontWeight: "600" }}>
+            <span
+              style={{ textTransform: "capitalize", fontWeight: "600" }}
+              className="name-span"
+            >
               {name}
             </span>
           ) : null}
           <span
+            className="ranking-label-name"
             style={{
               fontSize: "17px",
               lineHeight: "17px",
@@ -97,7 +101,7 @@ const ListCard: React.FunctionComponent<IListCardProps> = ({
           style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}
         >
           {mode ? null : (
-            <span style={{ maxWidth: "130px" }}>
+            <span style={{ maxWidth: "130px" }} className="carImageLabel">
               <img className="car-image" src={imgURL}></img>
             </span>
           )}
